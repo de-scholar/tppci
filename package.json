@@ -4,7 +4,8 @@
   "description": "This is a project of Teenage Pregnancy Prevention and Care Initiative",
   "main": "src/app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/server/app.js"
+    "dev": "nodemon --exec babel-node src/server/app.js",
+    "start": "NODE_ENV=production babel-node src/server/app.js"
   },
   "repository": {
     "type": "git",
