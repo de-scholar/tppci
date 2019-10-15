@@ -1,0 +1,43 @@
+{
+  "name": "tppci",
+  "version": "1.0.0",
+  "description": "This is a project of Teenage Pregnancy Prevention and Care Initiative",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/de-scholar/tppci.git"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "restful",
+    "postgresql"
+  ],
+  "author": "descholar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/de-scholar/tppci/issues"
+  },
+  "homepage": "https://github.com/de-scholar/tppci#readme",
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "pg": "^7.12.1",
+    "pug": "^2.0.4"
+  }
+}
