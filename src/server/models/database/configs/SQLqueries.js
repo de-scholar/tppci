@@ -14,7 +14,8 @@ export const CREATE_TABLE_USERS = 'DROP TABLE IF EXISTS users CASCADE; '
     + 'phone_number VARCHAR(13),'
     + 'username VARCHAR(50),'
     + 'password VARCHAR(255),'
-    + 'user_registered_at timestamp);';
+    + 'user_registered_at timestamp,'
+    + 'user_authorities VARCHAR(255));';
 
 export const ADD_NEW_USER = 'INSERT INTO users ('
     + ' fname,'
@@ -27,8 +28,9 @@ export const ADD_NEW_USER = 'INSERT INTO users ('
     + ' phone_number'
     + ' username,'
     + ' password,'
-    + ' user_registered_at)'
-    + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)';
+    + ' user_registered_at,'
+    + 'user_authorities)'
+    + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)';
 
 
 /** ============================================================================= */

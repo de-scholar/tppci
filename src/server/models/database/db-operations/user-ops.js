@@ -14,6 +14,7 @@ const addNewUser = (req, res) => {
     username,
     password,
     user_registered_at,
+    user_authorities,
   } = req.body;
 
   connect.query(ADD_NEW_USER, [
@@ -28,6 +29,7 @@ const addNewUser = (req, res) => {
     username,
     password,
     user_registered_at,
+    user_authorities,
   ], (err) => {
     if (err) {
       throw err;
