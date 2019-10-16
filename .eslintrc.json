@@ -30,6 +30,11 @@
                     ".jsx"
                 ]
             }
+        ],
+        "camelcase": "off",
+        "radix": [
+            "error",
+            "as-needed"
         ]
     }
 }
