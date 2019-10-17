@@ -1,6 +1,5 @@
 body {
   background-color: rgba(12, 0, 12, 0.24);
-  background-image: url("/img/preventing-teenage-pregnancies-620x275.jpg");
   background-repeat: no-repeat;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-size: cover;
@@ -15,6 +14,27 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.width-60 {
+  width: 60%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.black-bordered-element {
+  border: 3px solid #000000;
+}
+
+.black-transparent-element {
+  background-color: rgba(2, 2, 2, 0.582);
+}
+.rounded-corners {
+  border-radius: 15px;
+}
+.padding-15 {
+  padding: 15px;
+}
+/* NAVBAR */
 nav {
   display: inline-block;
   text-align: right;
@@ -35,8 +55,4 @@ nav a {
 nav a:hover {
   color: aliceblue;
   text-decoration: none;
-}
-.twitter-link {
-  color: aqua;
-  background-color: aqua;
 }
