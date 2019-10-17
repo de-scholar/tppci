@@ -34,6 +34,15 @@ body {
 .padding-15 {
   padding: 15px;
 }
+.text-17 {
+  font-size: 17px;
+}
+.hand-cursor {
+  cursor: pointer;
+}
+.shadows {
+  box-shadow: 5px 5px 5px #0000006b;
+}
 /* NAVBAR */
 nav {
   display: inline-block;
@@ -55,4 +64,12 @@ nav a {
 nav a:hover {
   color: aliceblue;
   text-decoration: none;
+}
+.sticky-element {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
 }
