@@ -31,6 +31,18 @@ body {
 .rounded-corners {
   border-radius: 15px;
 }
+.rounded-left-top {
+  border-top-left-radius: 15px;
+}
+.rounded-left-bottom {
+  border-bottom-left-radius: 15px;
+}
+.rounded-right-top {
+  border-top-right-radius: 15px;
+}
+.rounded-right-bottom {
+  border-bottom-right-radius: 15px;
+}
 .padding-15 {
   padding: 15px;
 }
