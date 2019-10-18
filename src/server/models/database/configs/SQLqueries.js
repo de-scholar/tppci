@@ -29,7 +29,7 @@ export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
     + ' phone_number,'
     + ' motivation,'
     + ' applied_at)'
-    + ' VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);';
+    + ' VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW());';
 
 
 /** ======================================================================== */
