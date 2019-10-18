@@ -1,6 +1,40 @@
 /** CREATION AND OPERATIONS ON TABLES */
 
-/** 1. TABLE USERS */
+/** ======================================================================== */
+
+/** 1. TABLE APPLICATION FOR MEMBERSHIP */
+export const CREATE_TABLE_APPLICATIONS = 'DROP TABLE IF EXISTS '
+    + 'applications_for_membership CASCADE;'
+    + 'CREATE TABLE IF NOT EXISTS applications_for_membership ('
+    + 'application_id SERIAL PRIMARY KEY, '
+    + 'fname VARCHAR(255),'
+    + 'middle_name VARCHAR(255),'
+    + 'lname VARCHAR(255),'
+    + 'country_residence VARCHAR(255),'
+    + 'occupation VARCHAR(50),'
+    + 'date_of_birth DATE,'
+    + 'email VARCHAR(50),'
+    + 'phone_number VARCHAR(13),'
+    + 'motivation VARCHAR(255),'
+    + 'applied_at timestamp);';
+
+export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
+    + ' fname,'
+    + ' middle_name,'
+    + ' lname,'
+    + ' country_residence,'
+    + ' occupation,'
+    + ' date_of_birth,'
+    + ' email,'
+    + ' phone_number,'
+    + ' motivation,'
+    + ' applied_at)'
+    + ' VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);';
+
+
+/** ======================================================================== */
+
+/** 2. TABLE USERS */
 export const CREATE_TABLE_USERS = 'DROP TABLE IF EXISTS users CASCADE; '
     + 'CREATE TABLE IF NOT EXISTS users ('
     + 'user_id SERIAL PRIMARY KEY, '
@@ -12,7 +46,6 @@ export const CREATE_TABLE_USERS = 'DROP TABLE IF EXISTS users CASCADE; '
     + 'date_of_birth DATE,'
     + 'email VARCHAR(50),'
     + 'phone_number VARCHAR(13),'
-    + 'username VARCHAR(50),'
     + 'password VARCHAR(255),'
     + 'user_registered_at timestamp,'
     + 'user_authorities VARCHAR(255));';
@@ -26,16 +59,15 @@ export const ADD_NEW_USER = 'INSERT INTO users ('
     + ' date_of_birth,'
     + ' email,'
     + ' phone_number'
-    + ' username,'
     + ' password,'
     + ' user_registered_at,'
     + 'user_authorities)'
-    + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)';
-
+    + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)';
 
 /** ============================================================================= */
+/** ============================================================================= */
 
-/** 2. TABLE WELCOME_MESSAGES TABLE */
+/** 3. TABLE WELCOME_MESSAGES TABLE */
 export const CREATE_TABLE_WELCOME_MSGS = 'DROP TABLE IF EXISTS welcome_messages CASCADE; '
     + 'CREATE TABLE IF NOT EXISTS '
     + 'welcome_messages ('

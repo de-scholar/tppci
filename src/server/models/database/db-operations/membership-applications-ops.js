@@ -1,7 +1,7 @@
 import connect from '../configs/connectToDb';
-import { ADD_NEW_USER } from '../configs/SQLqueries';
+import { ADD_NEW_APPLICATION } from '../configs/SQLqueries';
 
-const addNewUser = (req, res) => {
+const addNewMembershipApplication = (req, res) => {
   const {
     fname,
     middle_name,
@@ -11,12 +11,10 @@ const addNewUser = (req, res) => {
     date_of_birth,
     email,
     phone_number,
-    password,
-    user_registered_at,
-    user_authorities,
+    motivation,
   } = req.body;
 
-  connect.query(ADD_NEW_USER, [
+  connect.query(ADD_NEW_APPLICATION, [
     fname,
     middle_name,
     lname,
@@ -25,15 +23,13 @@ const addNewUser = (req, res) => {
     new Date(date_of_birth),
     email,
     phone_number,
-    password,
-    user_registered_at,
-    user_authorities,
+    motivation,
   ], (err) => {
     if (err) {
       throw err;
     }
-    res.status(200).send('User registered successfully!');
+    res.status(200).send(`You will receive feedback on ${email} to ASAP!`);
   });
 };
 
-export default addNewUser;
+export default addNewMembershipApplication;

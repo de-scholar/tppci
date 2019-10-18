@@ -15,6 +15,7 @@ app.use('/js', express.static(path.join(__dirname, '../ui/js/build')));
 app.use('/img', express.static(path.join(__dirname, '../ui/images')));
 
 app.use('/', routes.myUrls);
+app.use('/', routes.applyApi);
 app.use('/users', routes.usersApi);
 app.use('/welcome-messages', routes.wlcmMsgsApi);
 
