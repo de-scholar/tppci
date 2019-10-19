@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon --exec babel-node src/server/app.js",
-    "start": "NODE_ENV=production babel-node src/server/app.js npm run migrate",
+    "start": "concurrently 'npm run build' 'npm run migrate'",
+    "build": "NODE_ENV=production babel-node src/server/app.js",
     "migrate": "NODE_ENV=production babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js",
     "migrate-dev": "NODE_ENV=dev babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js"
   },
@@ -38,6 +39,7 @@
     "@babel/node": "^7.6.3",
     "@babel/preset-env": "^7.6.3",
     "babel-eslint": "^10.0.3",
+    "concurrently": "^5.0.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "path": "^0.12.7",
