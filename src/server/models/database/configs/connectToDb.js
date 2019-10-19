@@ -1,39 +1,36 @@
-import { Pool } from 'pg';
+import { Pool, Client } from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {
-  DATABASE_USERNAME,
-  DATABASE_HOST,
-  DATABASE_NAME,
-  DATABASE_PASSWORD,
-  DATABASE_PORT,
-  DATABASE_HOST_PRODUCTION,
-  DATABASE_USERNAME_PRODUCTION,
-  DATABASE_NAME_PRODUCTION,
-  DATABASE_PORT_PRODUCTION,
-  DATABASE_PASSWORD_PRODUCTION,
+  DB_USER, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT,
+  DATABASE_URL,
   NODE_ENV,
 } = process.env;
 
+let pool;
 const connect = () => {
   if (NODE_ENV === 'dev') {
-    return new Pool({
-      user: DATABASE_USERNAME,
-      host: DATABASE_HOST,
-      database: DATABASE_NAME,
-      password: DATABASE_PASSWORD,
-      port: DATABASE_PORT,
+    pool = new Pool({
+      user: DB_USER,
+      host: DB_HOST,
+      database: DB_NAME,
+      password: DB_PASSWORD,
+      port: DB_PORT,
     });
+    pool.on('connect', () => { console.log('connected to local db'); });
+    return pool;
   } if (NODE_ENV === 'production') {
-    return new Pool({
-      user: DATABASE_USERNAME_PRODUCTION,
-      host: DATABASE_HOST_PRODUCTION,
-      database: DATABASE_NAME_PRODUCTION,
-      password: DATABASE_PASSWORD_PRODUCTION,
-      port: DATABASE_PORT_PRODUCTION,
-    });
+    pool = new Client(
+      {
+        connectionString: DATABASE_URL,
+        ssl: true,
+      },
+    );
+    pool.connect();
+    pool.on('connect', () => { console.log('connected to online db'); });
+    return pool;
   }
   return null;
 };
