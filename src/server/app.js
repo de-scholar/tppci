@@ -20,5 +20,5 @@ app.use('/users', routes.usersApi);
 app.use('/welcome-messages', routes.wlcmMsgsApi);
 
 app.listen(port, () => {
-  console.log(`listening to port ${port}`);
+  console.log(`listening to port ${port} or ${process.env.DATABASE_URL}`);
 });
