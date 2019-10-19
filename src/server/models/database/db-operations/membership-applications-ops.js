@@ -13,8 +13,8 @@ const addNewMembershipApplication = (req, res) => {
     phone_number,
     motivation,
   } = req.body;
-  console.log(req.body);
-  connect.query(ADD_NEW_APPLICATION, [
+  console.log(req.body, '\nNew codes');
+  connect().query(ADD_NEW_APPLICATION, [
     fname,
     middle_name,
     lname,

@@ -16,7 +16,7 @@ const addNewUser = (req, res) => {
     user_authorities,
   } = req.body;
 
-  connect.query(ADD_NEW_USER, [
+  connect().query(ADD_NEW_USER, [
     fname,
     middle_name,
     lname,

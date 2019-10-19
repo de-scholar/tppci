@@ -10,7 +10,7 @@ const addNewWlcmMsg = (req, res) => {
     message_added_by,
     message_edited_by,
   } = req.body;
-  connect.query(ADD_NEW_WELCOME_MESSAGE, [
+  connect().query(ADD_NEW_WELCOME_MESSAGE, [
     message_title,
     message_content,
     new Date(message_created_at),
