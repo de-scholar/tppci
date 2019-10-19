@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon --exec babel-node src/server/app.js",
-    "start": "NODE_ENV=production babel-node src/server/app.js",
+    "start": "NODE_ENV=production babel-node src/server/app.js npm run migrate",
     "migrate": "NODE_ENV=production babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js",
     "migrate-dev": "NODE_ENV=dev babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js"
   },
