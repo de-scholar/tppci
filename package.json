@@ -7,8 +7,8 @@
     "dev": "NODE_ENV=dev nodemon --exec babel-node src/server/app.js",
     "start": "concurrently 'npm run build'",
     "build": "NODE_ENV=production babel-node src/server/app.js",
-    "migrate": "NODE_ENV=production babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js",
-    "migrate-dev": "NODE_ENV=dev babel-node ./src/server/models/database/db-operations/migrations/migrate-all-tables.js"
+    "migrate": "NODE_ENV=production babel-node ./src/server/models/database/db-operations/migrations/migrate-tables.js",
+    "migrate-dev": "NODE_ENV=dev babel-node ./src/server/models/database/db-operations/migrations/migrate-tables.js"
   },
   "repository": {
     "type": "git",
