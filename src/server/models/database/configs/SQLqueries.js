@@ -31,7 +31,10 @@ export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
     + ' applied_at)'
     + ' VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW());';
 
-
+/** CHECKING IF AN EMAIL EXISTS FROM TABLE USER OR NOT */
+export const CHECK_EMAIL_FROM_TABLE_APPLICATIONS = `
+SELECT EXISTS(SELECT 1 FROM applications_for_membership WHERE email=$1);
+`;
 /** ======================================================================== */
 
 /** 2. TABLE USERS */
@@ -77,19 +80,24 @@ export const ADD_DEFAULT_USER = `INSERT INTO users(
     NOW(),
     'SUPERUSER')`;
 
-export const ADD_NEW_USER = 'INSERT INTO users ('
-    + ' fname,'
-    + ' middle_name,'
-    + ' lname,'
-    + ' country_residence,'
-    + ' occupation,'
-    + ' date_of_birth,'
-    + ' email,'
-    + ' phone_number'
-    + ' password,'
-    + ' user_registered_at,'
-    + 'user_authorities)'
-    + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)';
+export const ADD_NEW_USER = `INSERT INTO users (
+     fname,
+     middle_name,
+     lname,
+     country_residence,
+     occupation,
+     date_of_birth,
+     email,
+     phone_number
+     password,
+     user_registered_at,
+     user_authorities)
+     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`;
+
+/** CHECKING IF AN EMAIL EXISTS FROM TABLE USERS OR NOT */
+export const CHECK_EMAIL_FROM_TABLE_USERS = `
+SELECT EXISTS(SELECT 1 FROM users WHERE email=$1);
+`;
 
 /** ============================================================================= */
 /** ============================================================================= */

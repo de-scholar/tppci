@@ -1,7 +1,7 @@
 import connect from '../configs/connectToDb';
-import { ADD_NEW_USER } from '../configs/SQLqueries';
+import { ADD_NEW_USER, CHECK_EMAIL_FROM_TABLE_USERS } from '../configs/SQLqueries';
 
-const addNewUser = (req, res) => {
+export const addNewUser = (req, res) => {
   const {
     fname,
     middle_name,
@@ -36,4 +36,13 @@ const addNewUser = (req, res) => {
   });
 };
 
-export default addNewUser;
+export const checkIfEmailExistsFromTableUsers = (req, res) => {
+  const { email } = req.body;
+  console.log(req.body);
+  connect().query(CHECK_EMAIL_FROM_TABLE_USERS, [email], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    res.status(200).json(results.rows[0].exists);
+  });
+};

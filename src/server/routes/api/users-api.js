@@ -4,5 +4,6 @@ import models from '../../models';
 const usersApi = Router();
 
 usersApi.post('/add-new-user', models.addNewUser);
+usersApi.post('/check-email-from-users', models.checkIfEmailExistsFromTableUsers);
 
 export default usersApi;

@@ -1,7 +1,10 @@
 import connect from '../configs/connectToDb';
-import { ADD_NEW_APPLICATION } from '../configs/SQLqueries';
+import {
+  ADD_NEW_APPLICATION,
+  CHECK_EMAIL_FROM_TABLE_APPLICATIONS,
+} from '../configs/SQLqueries';
 
-const addNewMembershipApplication = (req, res) => {
+export const addNewMembershipApplication = (req, res) => {
   const {
     fname,
     middle_name,
@@ -13,7 +16,6 @@ const addNewMembershipApplication = (req, res) => {
     phone_number,
     motivation,
   } = req.body;
-  console.log(req.body);
   connect().query(ADD_NEW_APPLICATION, [
     fname,
     middle_name,
@@ -43,4 +45,13 @@ const addNewMembershipApplication = (req, res) => {
   });
 };
 
-export default addNewMembershipApplication;
+export const checkIfEmailExistsFromTableApplications = (req, res) => {
+  const { email } = req.body;
+  console.log(req.body);
+  connect().query(CHECK_EMAIL_FROM_TABLE_APPLICATIONS, [email], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    res.status(200).json(results.rows[0].exists);
+  });
+};
