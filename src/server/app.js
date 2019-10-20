@@ -12,7 +12,6 @@ app.use('/js', express.static(path.join(__dirname, '../ui/js/build')));
 app.use('/img', express.static(path.join(__dirname, '../ui/images')));
 useMiddleWares(app, express);
 
-
 app.listen(port, () => {
   console.log(`listening to port ${port}`);
 });

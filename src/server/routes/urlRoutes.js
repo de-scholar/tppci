@@ -8,7 +8,7 @@ myUrls.get('/', (req, res) => {
   res.sendFile(indexPage);
 });
 
-myUrls.get('/login', (req, res) => {
+myUrls.get('/join-us', (req, res) => {
   const loginPage = path.join(__dirname, '../../ui/html/login.html');
   res.sendFile(loginPage);
 });

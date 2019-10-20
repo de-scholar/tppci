@@ -35,20 +35,47 @@ export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
 /** ======================================================================== */
 
 /** 2. TABLE USERS */
-export const CREATE_TABLE_USERS = 'DROP TABLE IF EXISTS users CASCADE; '
-    + 'CREATE TABLE IF NOT EXISTS users ('
-    + 'user_id SERIAL PRIMARY KEY, '
-    + 'fname VARCHAR(255),'
-    + 'middle_name VARCHAR(255),'
-    + 'lname VARCHAR(255),'
-    + 'country_residence VARCHAR(255),'
-    + 'occupation VARCHAR(50),'
-    + 'date_of_birth DATE,'
-    + 'email VARCHAR(50),'
-    + 'phone_number VARCHAR(13),'
-    + 'password VARCHAR(255),'
-    + 'user_registered_at timestamp,'
-    + 'user_authorities VARCHAR(255));';
+export const CREATE_TABLE_USERS = `
+    DROP TABLE IF EXISTS users CASCADE; 
+    CREATE TABLE IF NOT EXISTS users (
+    user_id SERIAL PRIMARY KEY, 
+    fname VARCHAR(255),
+    middle_name VARCHAR(255),
+    lname VARCHAR(255),
+    country_residence VARCHAR(255),
+    occupation VARCHAR(255),
+    date_of_birth DATE,
+    email VARCHAR(50),
+    phone_number VARCHAR(13),
+    password VARCHAR(255),
+    user_registered_at timestamp,
+    user_authorities VARCHAR(255));`;
+
+export const ADD_DEFAULT_USER = `INSERT INTO users(
+    fname,
+    middle_name,
+    lname,
+    country_residence,
+    occupation,
+    date_of_birth,
+    email,
+    phone_number,
+    password,
+    user_registered_at,
+    user_authorities
+) VALUES(
+    'MUGIRASE',
+    'descholar',
+    'Emmanuel',
+    'Rwanda',
+    'Assistant clinical officer anaesthetist, & 
+    Devoted software engineer',
+    '1990-1-1',
+    'emmamugira@gmail.com',
+    '+250722792371',
+    'mugirase',
+    NOW(),
+    'SUPERUSER')`;
 
 export const ADD_NEW_USER = 'INSERT INTO users ('
     + ' fname,'
