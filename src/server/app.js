@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
-app.use(tableCreation);
+app.use('/refresh-tables', tableCreation);
 app.use('/js', express.static(path.join(__dirname, '../ui/js/build')));
 app.use('/img', express.static(path.join(__dirname, '../ui/images')));
 
