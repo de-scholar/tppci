@@ -4,14 +4,17 @@ import migrateAllTables from '../models/database/db-operations/migrations/table-
 dotenv.config();
 
 const { NODE_ENV } = process.env;
-const tableCreation = () => {
+const tableCreation = (req, res, next) => {
   if (NODE_ENV === 'production') {
-    return (async () => {
+    (async () => {
       console.log('creating tables ... ');
       await migrateAllTables();
     })();
+    console.log('table created successfully!');
+    next();
   }
-  return null;
+  console.log('not in production env');
+  next();
 };
 
 export default tableCreation;
