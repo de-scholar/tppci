@@ -14,7 +14,7 @@ export const CREATE_TABLE_APPLICATIONS = 'DROP TABLE IF EXISTS '
     + 'occupation VARCHAR(50),'
     + 'date_of_birth DATE,'
     + 'email VARCHAR(50),'
-    + 'phone_number VARCHAR(13),'
+    + 'phone_number VARCHAR(20),'
     + 'motivation VARCHAR(255),'
     + 'applied_at timestamp);';
 
