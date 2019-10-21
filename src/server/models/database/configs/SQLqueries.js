@@ -1,3 +1,4 @@
+
 /** CREATION AND OPERATIONS ON TABLES */
 
 /** ======================================================================== */
@@ -48,55 +49,54 @@ export const CREATE_TABLE_USERS = `
     country_residence VARCHAR(255),
     occupation VARCHAR(255),
     date_of_birth DATE,
-    email VARCHAR(50),
-    phone_number VARCHAR(13),
+    email VARCHAR(50) UNIQUE,
+    phone_number VARCHAR(20),
     password VARCHAR(255),
     user_registered_at timestamp,
     user_authorities VARCHAR(255));`;
 
-export const ADD_DEFAULT_USER = `INSERT INTO users(
-    fname,
-    middle_name,
-    lname,
-    country_residence,
-    occupation,
-    date_of_birth,
-    email,
-    phone_number,
-    password,
-    user_registered_at,
-    user_authorities
-) VALUES(
-    'MUGIRASE',
-    'descholar',
-    'Emmanuel',
-    'Rwanda',
-    'Assistant clinical officer anaesthetist, & 
-    Devoted software engineer',
-    '1990-1-1',
-    'emmamugira@gmail.com',
-    '+250722792371',
-    'mugirase',
-    NOW(),
-    'SUPERUSER')`;
-
-export const ADD_NEW_USER = `INSERT INTO users (
-     fname,
-     middle_name,
-     lname,
-     country_residence,
-     occupation,
-     date_of_birth,
-     email,
-     phone_number
+export const ADD_DEFAULT_USER = (hashedKey) => (`INSERT INTO users(
+        fname,
+        middle_name,
+        lname,
+        country_residence,
+        occupation,
+        date_of_birth,
+        email,
+        phone_number,
+        password,
+        user_registered_at,
+        user_authorities
+    ) VALUES(
+        'MUGIRASE',
+        'descholar',
+        'Emmanuel',
+        'Rwanda',
+        'Assistant clinical officer anaesthetist, & 
+        Devoted software engineer',
+        '1990-1-1',
+        'emmamugira@gmail.com',
+        '+250722792371',
+        '${hashedKey}',
+        NOW(),
+        'SUPERUSER');`);
+export const ADD_NEW_USER = `INSERT INTO users(
+        fname,
+        middle_name,
+        lname,
+        country_residence,
+        occupation,
+        date_of_birth,
+        email,
+        phone_number
      password,
-     user_registered_at,
-     user_authorities)
-     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`;
+        user_registered_at,
+        user_authorities)
+VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
 
 /** CHECKING IF AN EMAIL EXISTS FROM TABLE USERS OR NOT */
 export const CHECK_EMAIL_FROM_TABLE_USERS = `
-SELECT EXISTS(SELECT 1 FROM users WHERE email=$1);
+SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
 `;
 
 /** ============================================================================= */

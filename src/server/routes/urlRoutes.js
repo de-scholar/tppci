@@ -13,4 +13,9 @@ myUrls.get('/join-us', (req, res) => {
   res.sendFile(loginPage);
 });
 
+myUrls.get('/user', (req, res) => {
+  const userPage = path.join(__dirname, '../../ui/html/user.html');
+  res.sendFile(userPage);
+});
+
 export default myUrls;

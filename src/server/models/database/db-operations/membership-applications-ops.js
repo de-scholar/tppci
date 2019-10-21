@@ -43,7 +43,7 @@ export const addNewMembershipApplication = (req, res) => {
       motivation,
     ], (err) => {
       if (err) {
-        throw err;
+        res.status(500).json({ error: err });
       }
       res.status(200).send(`Dear ${fname},
   

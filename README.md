@@ -1,6 +1,21 @@
 # **DESCRIPTION OF A PROJECT FOR GENERAL USAGE OF THIS APPLICATION**
 
----
+# Features
+
+- Application system
+  - _=>The application system is open for everyone, this means anyone can apply, for fellowship or membership._
+- Approval system
+
+  - _=>The approval system is only accessible for a superuser, it is a recruiting system._
+
+- **Users system:**
+  - _There are three types of users:_
+    - Superuser
+    - Administrator
+    - Public user
+- Current news updates
+  - _=>Which can be done by Superuser, and andministrator_
+  - _=>The news which will be updated, will be posted to the public webiste, read below in descriptions_
 
 This project is for preventing or caring **Teenage Pregnancy**. The computerized application which is being developped will have the following functionalities:
 
@@ -15,4 +30,14 @@ This project is for preventing or caring **Teenage Pregnancy**. The computerized
 
 - This project is using NODE/EXPRESS in backend, and REACT for the frontend, it is a good examp of a project developped using only javascript, without any other language.
 
-* If you want to test how it is looks like, you can take a look at [tppci website](https://tppci.herokuapp.com/ "Teenage Pregnancy Prevention and Care Initiative official website")
+# Tools
+
+- **Frameworks**:
+  - Express for backend
+  - ReactJS for frontend
+
+* **Databases**:
+
+  - PostgreSQL
+
+* Application link: [tppci website](https://tppci.herokuapp.com/ "Teenage Pregnancy Prevention and Care Initiative official website")
