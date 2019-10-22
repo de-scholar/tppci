@@ -1,4 +1,4 @@
-import tableCreation from './migrations-middleware';
+import tableCreation from './migrations-middleware-for-production';
 import routes from '../routes';
 
 const useMiddleWares = (app, express) => {

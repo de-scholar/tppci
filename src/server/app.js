@@ -8,6 +8,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
+app.set('view engine', 'pug');
+
 app.use('/js', express.static(path.join(__dirname, '../ui/js/build')));
 app.use('/img', express.static(path.join(__dirname, '../ui/images')));
 useMiddleWares(app, express);

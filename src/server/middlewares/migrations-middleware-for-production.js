@@ -13,7 +13,7 @@ const tableCreation = (req, res, next) => {
     console.log('table created successfully!');
     next();
   }
-  console.log('not in production env');
+  console.log('not in production mode');
   next();
 };
 

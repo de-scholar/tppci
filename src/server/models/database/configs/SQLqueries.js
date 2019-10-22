@@ -89,7 +89,7 @@ export const ADD_NEW_USER = `INSERT INTO users(
         date_of_birth,
         email,
         phone_number
-     password,
+        password,
         user_registered_at,
         user_authorities)
 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
@@ -98,6 +98,12 @@ VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
 export const CHECK_EMAIL_FROM_TABLE_USERS = `
 SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
 `;
+
+/** GET A USER BY EMAIL */
+export const GET_USER_BY_EMAIL = `
+SELECT * FROM users WHERE email=$1;
+`;
+
 
 /** ============================================================================= */
 /** ============================================================================= */

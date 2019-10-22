@@ -1,21 +1,22 @@
 import Router from 'express';
 import path from 'path';
+import { authRedirect } from '../middlewares/auth';
 
 const myUrls = Router();
 
 myUrls.get('/', (req, res) => {
-  const indexPage = path.join(__dirname, '../../ui/html/index.html');
-  res.sendFile(indexPage);
+  const indexPage = path.join(__dirname, '../../ui/views/index.pug');
+  res.render(indexPage);
 });
 
 myUrls.get('/join-us', (req, res) => {
-  const loginPage = path.join(__dirname, '../../ui/html/login.html');
-  res.sendFile(loginPage);
+  const loginPage = path.join(__dirname, '../../ui/views/login.pug');
+  res.render(loginPage);
 });
 
-myUrls.get('/user', (req, res) => {
-  const userPage = path.join(__dirname, '../../ui/html/user.html');
-  res.sendFile(userPage);
+myUrls.get('/auth-user', authRedirect, (req, res) => {
+  const userPage = path.join(__dirname, '../../ui/views/user.pug');
+  res.render(userPage, { fname: req.authenticatedUser.fname });
 });
 
 export default myUrls;
