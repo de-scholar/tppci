@@ -1,7 +1,5 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config();
 export const auth = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -16,7 +14,7 @@ export const auth = (req, res, next) => {
 export const authRedirect = (req, res, next) => {
   try {
     const { authentication } = req.query;
-    const decodedToken = jwt.verify(authentication, process.env.JWT_PRIVATE_KEY);
+    const decodedToken = jwt.verify(authentication, 'mugirase');
     req.authenticatedUser = decodedToken;
     next();
   } catch (err) {

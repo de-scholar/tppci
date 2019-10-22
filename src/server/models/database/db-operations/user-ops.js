@@ -78,7 +78,7 @@ export const checkUserLogin = (req, res) => {
           };
           const token = jwt.sign(
             userInfoToSend,
-            process.env.JWT_PRIVATE_KEY,
+            'mugirase',
             {
               expiresIn: '90 days',
             },
