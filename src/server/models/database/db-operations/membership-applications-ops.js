@@ -2,6 +2,7 @@ import connect from '../configs/connectToDb';
 import {
   ADD_NEW_APPLICATION,
   CHECK_EMAIL_FROM_TABLE_APPLICATIONS,
+  GET_ALL_APPLICATIONS,
 } from '../configs/SQLqueries';
 import { validateApplicationForm } from '../../../middlewares/validations';
 
@@ -70,5 +71,16 @@ export const checkIfEmailExistsFromTableApplications = (req, res) => {
       throw err;
     }
     res.status(200).json(results.rows[0].exists);
+  });
+};
+
+/** GETTING ALL MEMBERSHIP APPLICATIONS */
+export const getAllMembershipApplications = (req, res) => {
+  connect().query(GET_ALL_APPLICATIONS, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Something went wrong in the server, please try again!');
+    }
+    res.status(200).send(results.rows);
   });
 };

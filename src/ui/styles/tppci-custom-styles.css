@@ -113,6 +113,7 @@ nav a {
   color: rgb(190, 200, 188);
   padding-bottom: 3px;
   text-decoration: none;
+  margin-right: 12px;
 }
 nav a:hover {
   color: aliceblue;

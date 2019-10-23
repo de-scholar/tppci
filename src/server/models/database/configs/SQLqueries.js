@@ -4,20 +4,22 @@
 /** ======================================================================== */
 
 /** 1. TABLE APPLICATION FOR MEMBERSHIP */
-export const CREATE_TABLE_APPLICATIONS = 'DROP TABLE IF EXISTS '
-    + 'applications_for_membership CASCADE;'
-    + 'CREATE TABLE IF NOT EXISTS applications_for_membership ('
-    + 'application_id SERIAL PRIMARY KEY, '
-    + 'fname VARCHAR(255),'
-    + 'middle_name VARCHAR(255),'
-    + 'lname VARCHAR(255),'
-    + 'country_residence VARCHAR(255),'
-    + 'occupation VARCHAR(50),'
-    + 'date_of_birth DATE,'
-    + 'email VARCHAR(50),'
-    + 'phone_number VARCHAR(20),'
-    + 'motivation VARCHAR(255),'
-    + 'applied_at timestamp);';
+export const CREATE_TABLE_APPLICATIONS = `DROP TABLE IF EXISTS 
+     applications_for_membership CASCADE;
+     CREATE TABLE IF NOT EXISTS applications_for_membership (
+     application_id SERIAL PRIMARY KEY, 
+     fname VARCHAR(255),
+     middle_name VARCHAR(255),
+     lname VARCHAR(255),
+     country_residence VARCHAR(255),
+     occupation VARCHAR(50),
+     date_of_birth DATE,
+     email VARCHAR(50),
+     phone_number VARCHAR(20),
+     motivation VARCHAR(255),
+     applied_at timestamp,
+     confirmed BOOLEAN DEFAULT false,
+     email_sent BOOLEAN DEFAULT false );`;
 
 export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
     + ' fname,'
@@ -36,6 +38,10 @@ export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
 export const CHECK_EMAIL_FROM_TABLE_APPLICATIONS = `
 SELECT EXISTS(SELECT 1 FROM applications_for_membership WHERE email=$1);
 `;
+
+/** GETTING ALL THE APPLICATIONS */
+export const GET_ALL_APPLICATIONS = `SELECT * FROM 
+applications_for_membership ORDER BY application_id DESC`;
 /** ======================================================================== */
 
 /** 2. TABLE USERS */

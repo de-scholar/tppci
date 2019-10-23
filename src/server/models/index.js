@@ -1,9 +1,15 @@
 import {
+  addNewMembershipApplication,
+  checkIfEmailExistsFromTableApplications,
+  getAllMembershipApplications,
+} from './database/db-operations/membership-applications-ops';
+
+import {
   addNewUser,
-  checkIfEmailExistsFromTableUsers, checkUserLogin,
+  checkIfEmailExistsFromTableUsers,
+  checkUserLogin,
 } from './database/db-operations/user-ops';
 import addNewWlcmMsg from './database/db-operations/wlcm-msg-ops';
-import { addNewMembershipApplication, checkIfEmailExistsFromTableApplications } from './database/db-operations/membership-applications-ops';
 
 export default {
   addNewMembershipApplication,
@@ -12,4 +18,5 @@ export default {
   addNewWlcmMsg,
   checkIfEmailExistsFromTableApplications,
   checkIfEmailExistsFromTableUsers,
+  getAllMembershipApplications,
 };
