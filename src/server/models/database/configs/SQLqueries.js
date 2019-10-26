@@ -19,25 +19,47 @@ export const CREATE_TABLE_APPLICATIONS = `DROP TABLE IF EXISTS
      motivation VARCHAR(255),
      applied_at timestamp,
      confirmed BOOLEAN DEFAULT false,
-     email_sent BOOLEAN DEFAULT false );`;
+     replied BOOLEAN DEFAULT false );`;
 
-export const ADD_NEW_APPLICATION = 'INSERT INTO applications_for_membership ('
-    + ' fname,'
-    + ' middle_name,'
-    + ' lname,'
-    + ' country_residence,'
-    + ' occupation,'
-    + ' date_of_birth,'
-    + ' email,'
-    + ' phone_number,'
-    + ' motivation,'
-    + ' applied_at)'
-    + ' VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW());';
+export const ADD_NEW_APPLICATION = `INSERT INTO applications_for_membership (
+      fname,
+      middle_name,
+      lname,
+      country_residence,
+      occupation,
+      date_of_birth,
+      email,
+      phone_number,
+      motivation,
+      applied_at,
+      confirmed,
+      replied)
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW(),$10,$11);`;
 
 /** CHECKING IF AN EMAIL EXISTS FROM TABLE USER OR NOT */
 export const CHECK_EMAIL_FROM_TABLE_APPLICATIONS = `
 SELECT EXISTS(SELECT 1 FROM applications_for_membership WHERE email=$1);
 `;
+
+/** GETTING ALL UNREPLIED APPLICATIONS */
+export const GET_UNREPLIED_APPLICATIONS = `SELECT * FROM 
+applications_for_membership WHERE replied=false
+ ORDER BY application_id DESC`;
+
+/** GETTING ALL UNREPLIED APPLICATIONS */
+export const GET_REPLIED_APPLICATIONS = `SELECT * FROM 
+applications_for_membership WHERE replied=true
+ ORDER BY application_id DESC`;
+
+/** GETTING ALL UNREPLIED APPLICATIONS */
+export const GET_UNCONFIRMED_APPLICATIONS = `SELECT * FROM 
+applications_for_membership WHERE confirmed=false
+ ORDER BY application_id DESC`;
+
+/** GETTING ALL UNREPLIED APPLICATIONS */
+export const GET_CONFIRMED_APPLICATIONS = `SELECT * FROM 
+applications_for_membership WHERE confirmed=true
+ ORDER BY application_id DESC`;
 
 /** GETTING ALL THE APPLICATIONS */
 export const GET_ALL_APPLICATIONS = `SELECT * FROM 

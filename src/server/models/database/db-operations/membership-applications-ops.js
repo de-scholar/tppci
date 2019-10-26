@@ -84,3 +84,9 @@ export const getAllMembershipApplications = (req, res) => {
     res.status(200).send(results.rows);
   });
 };
+
+/** GETTING CONFIRMED APPLICATIONS */
+export const getConfirmedApplications = (req, res) => {
+
+}
+;
