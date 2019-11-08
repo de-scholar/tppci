@@ -2,6 +2,10 @@ import {
   addNewMembershipApplication,
   checkIfEmailExistsFromTableApplications,
   getAllMembershipApplications,
+  getRepliedApplications,
+  getUnRepliedApplications,
+  getConfirmedApplications,
+  getUnConfirmedApplications,
 } from './database/db-operations/membership-applications-ops';
 
 import {
@@ -19,4 +23,8 @@ export default {
   checkIfEmailExistsFromTableApplications,
   checkIfEmailExistsFromTableUsers,
   getAllMembershipApplications,
+  getRepliedApplications,
+  getUnRepliedApplications,
+  getUnConfirmedApplications,
+  getConfirmedApplications,
 };

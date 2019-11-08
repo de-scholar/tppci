@@ -4,7 +4,6 @@ export const auth = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'mugirase');
-    console.log(decodedToken);
     req.authenticatedUser = decodedToken;
     next();
   } catch (err) {
@@ -21,5 +20,3 @@ export const authRedirect = (req, res, next) => {
     res.status(401).send('You are not allowed to acces this page');
   }
 };
-
-export const descholar = () => { };

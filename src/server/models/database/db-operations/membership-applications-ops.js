@@ -3,10 +3,13 @@ import {
   ADD_NEW_APPLICATION,
   CHECK_EMAIL_FROM_TABLE_APPLICATIONS,
   GET_ALL_APPLICATIONS,
+  GET_UNREPLIED_APPLICATIONS,
+  GET_REPLIED_APPLICATIONS,
+  GET_UNCONFIRMED_APPLICATIONS,
+  GET_CONFIRMED_APPLICATIONS,
 } from '../configs/SQLqueries';
-import { validateApplicationForm } from '../../../middlewares/validations';
 
-export const addNewMembershipApplication = (req, res) => {
+export const addNewMembershipApplication = (req, res, next) => {
   const {
     fname,
     middle_name,
@@ -18,35 +21,25 @@ export const addNewMembershipApplication = (req, res) => {
     phone_number,
     motivation,
   } = req.body;
-  console.log(req.body);
+
   // before sending data to the db, i need to check if the form is valid
-  const isFormValid = validateApplicationForm(
+  connect().query(ADD_NEW_APPLICATION, [
     fname,
+    middle_name,
+    lname,
     country_residence,
     occupation,
-    date_of_birth,
+    new Date(date_of_birth),
     email,
     phone_number,
     motivation,
-    res,
-  );
-
-  if (isFormValid) {
-    connect().query(ADD_NEW_APPLICATION, [
-      fname,
-      middle_name,
-      lname,
-      country_residence,
-      occupation,
-      new Date(date_of_birth),
-      email,
-      phone_number,
-      motivation,
-    ], (err) => {
-      if (err) {
-        res.status(500).json({ error: err });
-      }
-      res.status(200).send(`Dear ${fname},
+    false,
+    false,
+  ], (err) => {
+    if (err) {
+      res.status(500).json({ error: err });
+    }
+    res.status(201).send(`Dear ${fname},
 
       Thank you for applying to be part of the TPPCI Fellowship.
       We're excited that you're interested in joining our movement
@@ -58,10 +51,8 @@ export const addNewMembershipApplication = (req, res) => {
 
       Further communication would be sent to you upon successful
       application process.`);
-    });
-  } else {
-    console.log('The form is not valid');
-  }
+  });
+  next();
 };
 
 export const checkIfEmailExistsFromTableApplications = (req, res) => {
@@ -81,12 +72,79 @@ export const getAllMembershipApplications = (req, res) => {
       console.log(err);
       res.status(500).send('Something went wrong in the server, please try again!');
     }
-    res.status(200).send(results.rows);
+    const foundApps = results.rows;
+    if (foundApps.length !== 0) {
+      res.status(200).send(foundApps);
+    } else if (foundApps.length === 0) {
+      res.status(204).send('No application found');
+    } else {
+      res.status(400).send('Try again please!');
+    }
   });
 };
 
-/** GETTING CONFIRMED APPLICATIONS */
-export const getConfirmedApplications = (req, res) => {
+/** GETTING UNREPLIED APPLICATIONS */
+export const getUnRepliedApplications = (req, res) => {
+  connect().query(GET_UNREPLIED_APPLICATIONS, (err, results) => {
+    if (err) {
+      res.status(500).send('Something is not right, refresh your page and retry!');
+    }
+    const foundUnReplieds = results.rows;
+    if (foundUnReplieds.length !== 0) {
+      res.status(200).send(foundUnReplieds);
+    } else if (foundUnReplieds.length === 0) {
+      res.status(204).send('It seems all the applications, have been replied or there is no application avilable!');
+    } else {
+      res.status(500).send('Something is not right, try again!');
+    }
+  });
+};
 
-}
-;
+/** GETTING REPLIED APPLICATIONS */
+export const getRepliedApplications = (req, res) => {
+  connect().query(GET_REPLIED_APPLICATIONS, (err, results) => {
+    if (err) {
+      res.status(500).send('Something is not okay, refresh and retry again!');
+    }
+    const foundReplieds = results.row;
+    if (foundReplieds.length !== 0) {
+      res.status(200).send(foundReplieds);
+    } else if (foundReplieds.length === 0) {
+      res.status(204).send('No replied applications found!');
+    } else {
+      res.status(500).send('Something is not right, retry again!');
+    }
+  });
+};
+
+export const getUnConfirmedApplications = (req, res) => {
+  connect().query(GET_UNCONFIRMED_APPLICATIONS, (err, results) => {
+    if (err) {
+      res.status(500).send('Something is not right, refresh and try again!');
+    }
+    const foundUnConfirmeds = results.rows;
+    if (foundUnConfirmeds.length !== 0) {
+      res.status(200).send(foundUnConfirmeds);
+    } else if (foundUnConfirmeds.length === 0) {
+      res.status(204).send('No Unconfirmed applications');
+    } else {
+      res.status(500).send('Some error occured, please be patient and try again!');
+    }
+  });
+};
+
+export const getConfirmedApplications = (req, res) => {
+  connect().query(GET_CONFIRMED_APPLICATIONS, (err, results) => {
+    if (err) {
+      res.status(500).send('Some error occured please try again!');
+    }
+    const foundConfirmeds = results.rows;
+    if (foundConfirmeds.length !== 0) {
+      res.status(200).send(foundConfirmeds);
+    } else if (foundConfirmeds.length === 0) {
+      res.status(204).send('No confirmed applications found!');
+    } else {
+      res.status(500).send('Some error occured, please try again!');
+    }
+  });
+};

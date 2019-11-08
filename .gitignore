@@ -4,3 +4,6 @@ node_modules
 .env
 package-lock.json
 /src/ui/js/dev/
+/src/ui/js/dev/index/node_modules
+/src/ui/js/dev/login/node_modules
+/src/ui/js/dev/user/node_modules
